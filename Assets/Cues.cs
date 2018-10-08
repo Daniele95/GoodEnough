@@ -7,6 +7,7 @@ public class Cues : MonoBehaviour {
     public GameObject cue;
     public Renderer rend;
     public GameObject hitLine;
+    public GameObject tasto;
 
     private float debug;
     private float s; //startPos
@@ -35,12 +36,22 @@ public class Cues : MonoBehaviour {
         riseTime = Mathf.Min(riseTime, 1.0f);
 
         rend.material.SetFloat("_FrostLeadingInTime", Mathf.Min(frostTime, 1.0f));
-        rend.material.SetFloat("_FrostRiseTime", riseTime);
 
 
         float invisibleBelow = (GetTopPos(hitLine) - GetTailPos(cue)) / cue.transform.localScale.y;
 
         rend.material.SetFloat("_InvisibleBelow", invisibleBelow);
+
+        Vector3 mousePos = Input.mousePosition; // coordinate di schermo
+        mousePos = Camera.main.ScreenToViewportPoint(mousePos); // coordinate di schermo normalizzate
+
+        Vector3 keyPos = Camera.main.WorldToScreenPoint(tasto.transform.position); // in coordinate schermo
+        keyPos = Camera.main.ScreenToViewportPoint(keyPos); // normalizzate
+
+
+        if(Mathf.Abs(mousePos.x - keyPos.x)<0.02f ) { 
+            rend.material.SetFloat("_FrostRiseTime", riseTime);
+        }
     }
 
 
