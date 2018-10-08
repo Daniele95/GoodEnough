@@ -63,9 +63,9 @@ Material:
     - _FrostLeadingInTime: 1
     - _FrostRiseTime: 0
     - _FrostStartTime: 1
-    - _FrostT1: 0.25
-    - _FrostT2: 0.26
-    - _FrostT3: 0.68
+    - _FrostT1: 0.544
+    - _FrostT2: 1
+    - _FrostT3: 1
     - _FrostTailCap: 0.06
     - _FrostTailFalloff: 1.7
     - _FrostTailHeight: 0.14
@@ -93,7 +93,7 @@ Material:
     - _ResonanceStrength: 0
     - _ResonanceWaveDensity: 14.26
     - _ResonanceWaveFront: 1
-    - _ScaleY: 3.4
+    - _ScaleY: 20
     - _ShowFrost: 1
     - _ShowResonance: 1
     - _SmoothnessTextureChannel: 0
