@@ -11,6 +11,8 @@ public class Cues : MonoBehaviour {
 
     private float debug;
     private float s; //startPos
+    private bool clicked;
+    private float timeReleaseMouse;
 
     void Start()
     {
@@ -42,18 +44,34 @@ public class Cues : MonoBehaviour {
 
         rend.material.SetFloat("_InvisibleBelow", invisibleBelow);
 
-        Vector3 mousePos = Input.mousePosition; // coordinate di schermo
-        mousePos = Camera.main.ScreenToViewportPoint(mousePos); // coordinate di schermo normalizzate
+        Debug(System.Convert.ToSingle(clicked));
 
-        Vector3 keyPos = Camera.main.WorldToScreenPoint(tasto.transform.position); // in coordinate schermo
-        keyPos = Camera.main.ScreenToViewportPoint(keyPos); // normalizzate
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 mousePos = Input.mousePosition; // coordinate di schermo
+            mousePos = Camera.main.ScreenToViewportPoint(mousePos); // coordinate di schermo normalizzate
+
+            Vector3 keyPos = Camera.main.WorldToScreenPoint(tasto.transform.position); // in coordinate schermo
+            keyPos = Camera.main.ScreenToViewportPoint(keyPos); // normalizzate
+
+            float CueDistFromHitLine = Mathf.Abs(GetTailPos(cue) - GetTopPos(hitLine));
 
 
-        if(Mathf.Abs(mousePos.x - keyPos.x)<0.02f ) { 
-            rend.material.SetFloat("_FrostRiseTime", riseTime);
+            if (Mathf.Abs(mousePos.x - keyPos.x) < 0.02f && CueDistFromHitLine < 0.9)
+                clicked = true;
+
+
+            if (clicked)
+            {
+                rend.material.SetFloat("_FrostRiseTime", riseTime);
+                rend.material.SetFloat("_ShowResonance", 1.0f);
+            }
         }
-    }
+        if(Input.GetMouseButtonUp(0))
+            timeReleaseMouse = riseTime;
 
+
+    }
 
     void Debug(float f)
     {
@@ -77,6 +95,7 @@ public class Cues : MonoBehaviour {
     float GetTopPos(GameObject g)
     {
         return g.transform.position.y + g.transform.localScale.y / 2.0f;
+
     }
 
 }
