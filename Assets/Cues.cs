@@ -1,18 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using Utilities;
+
+public class timeHandler {
+
+
+
+    void getTime()
+    {
+        float p = s - t * speed; //position at time t
+        SetTailPos(cue, p);
+        float e = GetTopPos(hitLine); //hitline
+
+
+        float frostTime = 1.0f - (p - e) / (s - e);
+        float riseTime = Mathf.Max(0.0f, frostTime - 1.0f) * 4.0f;
+        frostTime = Mathf.Min(frostTime, 1.0f);
+        riseTime = Mathf.Min(riseTime, 1.0f);
+    }
+
+
+}
+
+
 
 public class Cues : MonoBehaviour {
+    
+    Timer myTime = new Timer();
+    Utilities.Debug myDebug = new Utilities.Debug();
 
     public GameObject cue;
     public Renderer rend;
     public GameObject hitLine;
     public GameObject tasto;
+    public showTime myShowTime = new showTime();
+    public timeHandler myTimeHandler= new timeHandler();
 
-    private float debug;
     private float s; //startPos
     private bool clicked;
     private float timeReleaseMouse;
+
+    private float rewardingStartTime = 0.0f;
 
     void Start()
     {
@@ -21,21 +49,18 @@ public class Cues : MonoBehaviour {
         rend.material.shader = shader;
 
         s = GetTailPos(cue);
+
     }
 
     void Update()
     {
+
+        float t = Time.time;
+
         float speed = 1.0f;
 
-        float p = s - Time.time * speed; //position at time t
-        SetTailPos(cue, p);
-        float e = GetTopPos(hitLine); //hitline
+        float frostTime =myTimeHandler.getFrostTime();
 
-
-        float frostTime = 1.0f - (p - e) / (s - e);
-        float riseTime = Mathf.Max(0.0f, frostTime - 1.0f)*4.0f;
-        frostTime = Mathf.Min(frostTime, 1.0f);
-        riseTime = Mathf.Min(riseTime, 1.0f);
 
         rend.material.SetFloat("_FrostLeadingInTime", Mathf.Min(frostTime, 1.0f));
 
@@ -43,11 +68,12 @@ public class Cues : MonoBehaviour {
         float invisibleBelow = (GetTopPos(hitLine) - GetTailPos(cue)) / cue.transform.localScale.y;
 
         rend.material.SetFloat("_InvisibleBelow", invisibleBelow);
-
-        Debug(System.Convert.ToSingle(clicked));
+        
 
         if (Input.GetMouseButton(0))
         {
+            myTime.getTime();
+            myDebug.addOnce(myTime.getTime().ToString());
             Vector3 mousePos = Input.mousePosition; // coordinate di schermo
             mousePos = Camera.main.ScreenToViewportPoint(mousePos); // coordinate di schermo normalizzate
 
@@ -56,10 +82,24 @@ public class Cues : MonoBehaviour {
 
             float CueDistFromHitLine = Mathf.Abs(GetTailPos(cue) - GetTopPos(hitLine));
 
+            myDebug.addOnce(System.Convert.ToString(riseTime));
+
+            if (Math.Abs(riseTime - 1.0f) < 0.2f)
+            {
+                myDebug.addOnce("Best");
+                SetRewardingElement();
+            }
 
             if (Mathf.Abs(mousePos.x - keyPos.x) < 0.02f && CueDistFromHitLine < 0.9)
+            {
+                if (clicked == false)
+                {
+                    myDebug.add("GoodEnough");
+                    //Debug(System.Convert.ToString(clicked));
+                }
                 clicked = true;
-
+            }
+            
 
             if (clicked)
             {
@@ -73,14 +113,20 @@ public class Cues : MonoBehaviour {
 
     }
 
-    void Debug(float f)
-    {
-        debug = f;
-    }
+    private bool beginRecordingElement = false;
 
+    void SetRewardingElement()
+    {
+        if(!beginRecordingElement) {
+            rewardingStartTime = Time.time;
+            beginRecordingElement = true;
+        }
+        rend.material.SetFloat("_RewardingTime", Time.time - rewardingStartTime);
+    }
+    
     void OnGUI()
     {
-        GUILayout.Label(debug.ToString());
+        GUILayout.Label(myDebug.GetDebugString());
     }
 
     float GetTailPos(GameObject g)

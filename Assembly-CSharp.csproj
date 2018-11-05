@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Cues.cs" />
+     <Compile Include="Assets\Debug.cs" />
+     <Compile Include="Assets\showTime.cs" />
+     <Compile Include="Assets\Timer.cs" />
      <None Include="Assets\CueShared.cginc" />
      <None Include="Assets\QuadBody.shader" />
  <Reference Include="UnityEditor.StandardEvents">

@@ -86,13 +86,14 @@ Material:
     - _ResonanceAmplitude: 0.232
     - _ResonanceCircleDensity: 2
     - _ResonanceCircularity: 0.869
-    - _ResonanceFrequency: 5
-    - _ResonancePitch: 62.2
-    - _ResonanceSharpness: 1.04
+    - _ResonanceFrequency: 4.5
+    - _ResonancePitch: 42
+    - _ResonanceSharpness: 3.1
     - _ResonanceSpeed: 7.78
     - _ResonanceStrength: 0.65
     - _ResonanceWaveDensity: 14.26
     - _ResonanceWaveFront: 1
+    - _RewardingTime: 0
     - _ScaleY: 20
     - _ShowFrost: 1
     - _ShowResonance: 0

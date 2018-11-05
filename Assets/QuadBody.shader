@@ -22,6 +22,7 @@
 		[Header( Time )]		
 		_FrostLeadingInTime( "Frost leading in time", Range( 0, 1 ) ) = 1
 		_FrostRiseTime( "Frost rise time", Range( 0, 1 ) ) = 1
+		_RewardingTime("rewarding time", Range( 0, 1 ) ) = 1
 		
 		[Header( Resonance )]
 		_ResonanceWaveCenter( "Wave center", Vector ) = ( 0, 0, 0, 0 )
@@ -81,6 +82,7 @@
 			// Frost
 			fixed _FrostLeadingInTime;
 			fixed _FrostRiseTime;
+			fixed _RewardingTime;
 					
 			fixed4 frag( v2f i ) : SV_Target
 			{	
@@ -100,8 +102,11 @@
 				fixed3 resonanceLayer = resonance( i.uv, i.waveCenter.xy, _Time.y ) * _ResonanceColor * _ShowResonance;			
 				fixed3 frostLayer = quadFrost( i.uv, _FrostLeadingInTime, _FrostRiseTime, i.screenPos, 1.0 ) * _FrostColor * _ShowFrost;
 				
+				//reward
+
+
 				// Everything
-				return fixed4( resonanceLayer + layer3( frostLayer, baseLayer ), fuzzedAlpha );
+				return fixed4( resonanceLayer + layer3( frostLayer, baseLayer ), fuzzedAlpha )+_RewardingTime;
 				
 			}
 			ENDCG
