@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Utilities
 {
@@ -9,26 +10,24 @@ namespace Utilities
 
         GameObject timeQuad;
 
-        void ShowTime()
+        public void ShowTime()
         {
-            timeQuad = GameObject.Find("timeQuad");
+            
         }
 
-        void setRiseTime()
+        public void getObject()
         {
-
+            timeQuad = GameObject.Find("timeQuadParent");
         }
-
-        // Use this for initialization
-        void Start()
+        public void set(float time, float speed)
         {
-
+            timeQuad.transform.localScale.Set(0, time*speed, 0);
         }
-
-        // Update is called once per frame
-        void Update()
+        
+        public String get()
         {
-
+            return timeQuad.ToString();
         }
+      
     }
 }

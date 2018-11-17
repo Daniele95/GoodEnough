@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: circle
+  m_Shader: {fileID: 4800000, guid: 62df1d74be6c9ad42bc93caca942c8e4, type: 3}
+  m_ShaderKeywords: _SHOWFROST_ON _SHOWRESONANCE_ON _SHOWRING_ON _SHOWTOPHALFONLY_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Alpha: 1
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _FrostHeight: 1
+    - _FrostHeightDivider: 5
+    - _FrostMaxHeightTime: 1
+    - _FrostMaxWidthTime: 1
+    - _FrostSideHeightPercent: 1
+    - _FrostTime: 1
+    - _FrostWidth: 1
+    - _FuzzAmount: 0.6
+    - _FuzzLengthMultiplier: 2.5
+    - _FuzzPower: 6
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _InvisibleBelow: 0
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _ResonanceAmplitude: 1
+    - _ResonanceCircleDensity: 1
+    - _ResonanceCircularity: 1
+    - _ResonanceFrequency: 1
+    - _ResonancePitch: 1
+    - _ResonanceSharpness: 1
+    - _ResonanceSpeed: 1
+    - _ResonanceStrength: 1
+    - _ResonanceWaveDensity: 1
+    - _ResonanceWaveFront: 1
+    - _RingFuzziness: 1
+    - _RingTime: 2
+    - _RingWidth: 1
+    - _ScaleY: 3
+    - _ShowFrost: 1
+    - _ShowResonance: 1
+    - _ShowRing: 1
+    - _ShowTopHalfOnly: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.5377358, g: 0.06848522, b: 0.06848522, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FrostColor: {r: 0.3756601, g: 0.3773585, b: 0.115699545, a: 1}
+    - _ResonanceColor: {r: 0.27135384, g: 0.8396226, b: 0.18614274, a: 1}
+    - _ResonanceRandoms: {r: 1, g: 1, b: 1, a: 1}
+    - _ResonanceWaveCenter: {r: 1, g: 1, b: 1, a: 1}

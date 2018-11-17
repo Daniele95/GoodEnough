@@ -53,11 +53,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Cues.cs" />
-     <Compile Include="Assets\Debug.cs" />
+     <Compile Include="Assets\ClickableKey.cs" />
+     <Compile Include="Assets\CueDynamic.cs" />
+     <Compile Include="Assets\DebugText.cs" />
      <Compile Include="Assets\showTime.cs" />
      <Compile Include="Assets\Timer.cs" />
+     <Compile Include="Assets\Utilities.cs" />
+     <None Include="Assets\FlutterBody.shader" />
      <None Include="Assets\CueShared.cginc" />
+     <None Include="Assets\SwipeBody.shader" />
+     <None Include="Assets\CircleBody.shader" />
      <None Include="Assets\QuadBody.shader" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/daniele/Documents/Unity Projects/GoodEnough/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
