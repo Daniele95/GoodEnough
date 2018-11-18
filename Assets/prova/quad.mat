@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: quad
-  m_Shader: {fileID: 4800000, guid: d145a747a69b18a4d9194b952fed6f3f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3e812a20eab3b704c82190ced4998c9a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -59,14 +59,15 @@ Material:
     - CircleDensity: 0.7
     - Circularity: 0.68
     - Frequency: 4.6
+    - Fuzziness: 1
     - Pitch: 30
     - Sharpness: 1.2
     - Speed: 9
     - StartTime: 1
     - Strength: 1.9
     - T1: 0.13
-    - T2: 0.25
-    - T3: 0.69
+    - T2: 0.38
+    - T3: 0.84
     - TailCap: 0.08
     - TailFalloff: 2.1
     - TailHeight: 0.158
@@ -77,10 +78,17 @@ Material:
     - TimeMultiplier: 0.5
     - WaveDensity: 15
     - WaveFront: 1
+    - Width: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _FrostHeight: 1
+    - _FrostHeightDivider: 5
+    - _FrostMaxHeightTime: 1
+    - _FrostMaxWidthTime: 1
+    - _FrostSideHeightPercent: 1
+    - _FrostWidth: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -94,6 +102,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - green: 0
+    - time: 0.95
     m_Colors:
     - Randoms: {r: 1, g: 1, b: 1, a: 1}
     - WaveCenter: {r: 1, g: 1, b: 1, a: 1}
