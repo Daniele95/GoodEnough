@@ -55,6 +55,17 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Amplitude: 1
+    - CircleDensity: 1
+    - Circularity: 1
+    - Frequency: 1
+    - Pitch: 1
+    - Sharpness: 1
+    - Speed: 1
+    - Strength: 1
+    - TimeMultiplier: 1
+    - WaveDensity: 1
+    - WaveFront: 1
     - _Alpha: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -78,15 +89,16 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ResonanceAmplitude: 1
-    - _ResonanceCircleDensity: 1
+    - _PressedBest: 0
+    - _ResonanceAmplitude: 0.929
+    - _ResonanceCircleDensity: 9.75
     - _ResonanceCircularity: 1
-    - _ResonanceFrequency: 1
-    - _ResonancePitch: 1
+    - _ResonanceFrequency: 3.05
+    - _ResonancePitch: 28
     - _ResonanceSharpness: 1
-    - _ResonanceSpeed: 1
+    - _ResonanceSpeed: 14.3
     - _ResonanceStrength: 1
-    - _ResonanceWaveDensity: 1
+    - _ResonanceWaveDensity: 0.8
     - _ResonanceWaveFront: 1
     - _RingFuzziness: 1
     - _RingTime: 2
@@ -102,10 +114,12 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.5377358, g: 0.06848522, b: 0.06848522, a: 1}
+    - Randoms: {r: 1, g: 1, b: 1, a: 1}
+    - WaveCenter: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FrostColor: {r: 0.3756601, g: 0.3773585, b: 0.115699545, a: 1}
-    - _ResonanceColor: {r: 0.27135384, g: 0.8396226, b: 0.18614274, a: 1}
+    - _FrostColor: {r: 0.33681917, g: 0.8207547, b: 0.38430014, a: 1}
+    - _ResonanceColor: {r: 0.3250267, g: 0.8301887, b: 0.39188644, a: 1}
     - _ResonanceRandoms: {r: 1, g: 1, b: 1, a: 1}
     - _ResonanceWaveCenter: {r: 1, g: 1, b: 1, a: 1}

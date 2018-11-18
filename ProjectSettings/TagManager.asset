@@ -6,7 +6,11 @@ TagManager:
   tags:
   - timeController
   - hitLine
-  - clickableKey
+  - quadKey
+  - circleKey
+  - circle
+  - quad
+  - flutterKey
   layers:
   - Default
   - TransparentFX

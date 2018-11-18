@@ -53,17 +53,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ClickableKey.cs" />
-     <Compile Include="Assets\CueDynamic.cs" />
-     <Compile Include="Assets\DebugText.cs" />
-     <Compile Include="Assets\showTime.cs" />
-     <Compile Include="Assets\Timer.cs" />
-     <Compile Include="Assets\Utilities.cs" />
-     <None Include="Assets\FlutterBody.shader" />
-     <None Include="Assets\CueShared.cginc" />
-     <None Include="Assets\SwipeBody.shader" />
-     <None Include="Assets\CircleBody.shader" />
-     <None Include="Assets\QuadBody.shader" />
+     <Compile Include="Assets\prova\quad.cs" />
+     <Compile Include="Assets\prova\ShaderGen.cs" />
+     <Compile Include="Assets\prova\ShaderGenEditor.cs" />
+     <Compile Include="Assets\script\ClickableKey.cs" />
+     <Compile Include="Assets\script\CueDynamic.cs" />
+     <Compile Include="Assets\script\cues\circleCue.cs" />
+     <Compile Include="Assets\script\cues\flutterCue.cs" />
+     <Compile Include="Assets\script\cues\quadCue.cs" />
+     <Compile Include="Assets\script\DebugText.cs" />
+     <Compile Include="Assets\script\setPivot.cs" />
+     <Compile Include="Assets\script\Timer.cs" />
+     <Compile Include="Assets\script\Utilities.cs" />
+     <None Include="Assets\shader\FlutterBody.shader" />
+     <None Include="Assets\shader\CueShared.cginc" />
+     <None Include="Assets\shader\SwipeBody.shader" />
+     <None Include="Assets\prova\ingredients\circleFrost.cginc" />
+     <None Include="Assets\shader\CircleBody.shader" />
+     <None Include="Assets\prova\ingredients\resonance.cginc" />
+     <None Include="Assets\prova\quadGenerated.shader" />
+     <None Include="Assets\prova\ingredients\quadFrost.cginc" />
+     <None Include="Assets\prova\quad.shader" />
+     <None Include="Assets\prova\ingredients\vertexShader.cginc" />
+     <None Include="Assets\shader\QuadBody.shader" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/daniele/Documents/Unity Projects/GoodEnough/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
