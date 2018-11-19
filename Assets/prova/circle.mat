@@ -89,6 +89,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ResonanceDimmer: 1
+    - _ScaleY: 6
     - _ShowFrost: 1
     - _ShowResonance: 1
     - _ShowRing: 1
@@ -104,5 +106,5 @@ Material:
     - _BaseColor: {r: 0.5849056, g: 0.08552865, b: 0.08552865, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FrostColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FrostColor: {r: 1, g: 0.57724154, b: 0.3066038, a: 1}
     - _ResonanceColor: {r: 0.7650693, g: 0.8962264, b: 0.58762014, a: 1}

@@ -101,8 +101,9 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ResonanceDimmer: 1
+    - _ScaleY: 7.67
     - _ShowFrost: 1
-    - _ShowResonance: 1
+    - _ShowResonance: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

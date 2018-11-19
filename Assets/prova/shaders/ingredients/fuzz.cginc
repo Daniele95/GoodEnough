@@ -3,9 +3,10 @@ fixed _FuzzAmount; // 0 10 6
 fixed _FuzzPower; // 0 10 2.5
 
 
-fixed getFuzzedAlpha(fixed d, fixed alpha)
+fixed fuzzedAlpha;
+
+void getFuzzedAlpha(fixed2 uv)
 {
-    fixed fuzz = 1.0 - pow(abs(d), _FuzzPower);
-    fuzz += 1.0 - _FuzzAmount;
-    return min(fuzz, alpha);
+    fuzzedAlpha = smoothstep(0.5, 0.4, abs(uv.x - 0.5));
+    fuzzedAlpha *= 1. - smoothstep(0.9, 1., uv.y);
 }

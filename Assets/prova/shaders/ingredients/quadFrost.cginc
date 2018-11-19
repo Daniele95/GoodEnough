@@ -50,10 +50,8 @@ fixed quadFrost(fixed2 uv, fixed time, float ScaleY)
     fixed tailSidesUp = (fixed) smoothstep(T1, T2, posY);
     fixed tailGoesUp = (fixed) smoothstep(0.0, T3, riseTime);
     fixed x = uv.x;
-    if (x > 0.5)
-    {
-        x = 1.0 - x;
-    }
+    if (x > 0.5)  x = 1.0 - x;
+
     fixed shiftY = (fixed) (uv.y - tailGoesUp) * scaleY / 20.0;
     fixed height = (fixed) (pow(TailHeight, TailHeightPow) * tailHeadUp);
 	
