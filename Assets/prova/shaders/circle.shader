@@ -16,6 +16,7 @@
 			
 			#include "UnityCG.cginc"
 			#include "ingredients/vertexShader.cginc"
+			#include "ingredients/utilities.cginc"
 			
 			#include "ingredients/cueProperties.cginc"
 			#include "ingredients/fuzz.cginc"
@@ -39,7 +40,7 @@
 				// Circle shape
 				shape = ( ( centeredUv.x * centeredUv.x + centeredUv.y * centeredUv.y ) < 0.25 );	
 
-				getFuzzedAlpha(fixed2(length(centeredUv)+.5,0.));
+				getFuzzedAlpha(fixed2((length(centeredUv)+.5),0.));
 
 				return centeredUv;
 			}
@@ -62,7 +63,6 @@
 				// Blending
 				fixed4 layers = layer4( ringLayer, fixed4( resonanceLayer + layer3( frostLayer, baseLayer ), fuzzedAlpha ) );
 				return layers * shape;
-
 			}
 			ENDCG
 		}

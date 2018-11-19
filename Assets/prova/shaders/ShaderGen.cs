@@ -28,6 +28,7 @@ namespace shaderGen
         void Update()
         {
             GenerateShaders();
+            Debug.Log("generato shader");
         }
 
         public void GenerateShaders()
@@ -38,7 +39,6 @@ namespace shaderGen
             foreach (string shaderName in getShaders(shaderHome)) { 
 
                 compileShaderWithIncludes(stringOps.removeExtension(shaderName));
-                Debug.Log("generato lo shader per " + shaderName);
             }
 
         }
@@ -86,7 +86,8 @@ namespace shaderGen
             {
                 if ((line = read.ReadLine()).Contains("#include"))
                 {
-                    if (!line.Contains("UnityCG.cginc") && !line.Contains("vertexShader.cginc"))
+                    if (!line.Contains("UnityCG.cginc") && !line.Contains("vertexShader.cginc")
+                       && !line.Contains("utilities.cginc"))
                     {
                         string[] words = line.Split('/');
                         string include = words[words.Length - 1];

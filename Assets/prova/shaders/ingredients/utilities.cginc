@@ -20,13 +20,16 @@ fixed _between(float a, float b, float x)
 
 
 
-float3 debugVariable(fixed x)
+float3 debugVar(fixed x,fixed left, fixed right)
 {
+    fixed pace = abs(right - left)/15.;
+
     fixed3 result = float3(0., 0., 0.);
     fixed a = 0;
-    for (float i = -3.1; i < 3.1; i += .1)
+    for (float i = left; i < right; i += pace)
     {
-        a = _between(i - .05, i + .05, x);
+        a = _between(i - pace / 2., i + pace / 2., x);
+
         if (i > 0. && i < 1.)
             result += float3(0., a * i, 0.);
         if (i > 1. && i < 2.)

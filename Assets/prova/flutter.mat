@@ -106,7 +106,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - time: 0.34
+    - time: 0.98
     m_Colors:
     - Randoms: {r: 1, g: 1, b: 1, a: 1}
     - WaveCenter: {r: 1, g: 1, b: 1, a: 1}

@@ -15,6 +15,7 @@
 			
 			#include "UnityCG.cginc"
 			#include "ingredients/vertexShader.cginc"
+			#include "ingredients/utilities.cginc"
 			
 			#include "ingredients/cueProperties.cginc"
 			#include "ingredients/fuzz.cginc"
@@ -27,7 +28,8 @@
 			#pragma fragment frag
 			#pragma vertex vert
 			
-			fixed2 getUvs(fixed2 uv) { 
+			fixed2 getUvs(fixed2 uv) {
+				uv.x = abs(uv.x-.5)+.5;
 				getFuzzedAlpha(uv);
 				return uv;
 			}
@@ -43,7 +45,7 @@
 				fixed3 frostLayer = quadFrost(myUv,time, _ScaleY) * _FrostColor * _ShowFrost;
 				
 				// Everything
-				return fixed4( resonanceLayer + layer3( frostLayer, baseLayer ), fuzzedAlpha );
+				return fixed4( resonanceLayer + layer3( frostLayer, baseLayer ), fuzzedAlpha );				
 			}
 			ENDCG
 		}

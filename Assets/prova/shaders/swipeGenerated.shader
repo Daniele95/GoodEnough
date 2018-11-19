@@ -73,7 +73,8 @@ Shader "Unlit/swipeGenerated"
 			CGPROGRAM
 			
 			#include "UnityCG.cginc"
-			#include "ingredients/vertexShader.cginc"
+			#include "ingredients/vertexShader.cginc"			
+			#include "ingredients/utilities.cginc"
 			
 			#include "ingredients/cueProperties.cginc"
 			#include "ingredients/fuzz.cginc"
@@ -83,11 +84,9 @@ Shader "Unlit/swipeGenerated"
 			#include "ingredients/quadFrost.cginc"
 			#include "ingredients/slant.cginc"
 
-
 			#pragma fragment frag
-			#pragma vertex vert
-			
-			
+			#pragma vertex vert				
+
 			fixed2 getUvs (fixed2 uv) {
 			// Shape
 				fixed x = slantedX( uv );

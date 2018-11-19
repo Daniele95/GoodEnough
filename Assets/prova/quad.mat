@@ -101,7 +101,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ResonanceDimmer: 1
-    - _ScaleY: 7.67
+    - _ScaleY: 5.29
     - _ShowFrost: 1
     - _ShowResonance: 0
     - _SmoothnessTextureChannel: 0
@@ -110,7 +110,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - green: 0
-    - time: 0.96
+    - time: 0.24
     m_Colors:
     - Randoms: {r: 1, g: 1, b: 1, a: 1}
     - WaveCenter: {r: 1, g: 1, b: 1, a: 1}

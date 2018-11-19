@@ -16,6 +16,7 @@
 			
 			#include "UnityCG.cginc"
 			#include "ingredients/vertexShader.cginc"
+			#include "ingredients/utilities.cginc"
 			
 			#include "ingredients/cueProperties.cginc"
 			#include "ingredients/fuzz.cginc"
@@ -29,7 +30,6 @@
 			#pragma vertex vert
 			
 			fixed _SlantAmount;
-
 
 			fixed2 getUvs(fixed2 uv) {
 				// Slant shape
@@ -48,10 +48,7 @@
 
 				return fixed2(x,y);
 			}
-			
-			
-			#include "ingredients/utilities.cginc"
-
+						
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// calls getUvs and gives me a 'uv' var suited to the object:
@@ -64,9 +61,7 @@
 
 				// Everything
 				fixed3 layers = resonanceLayer + layer3( frostLayer, baseLayer );
-				//return fixed4( layers * shape, fuzzedAlpha );
-				
-				return finalCol(debugVariable(i.uv.y));
+				return fixed4( layers * shape, fuzzedAlpha );
 			}
 
 			ENDCG

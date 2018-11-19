@@ -54,9 +54,6 @@ Shader "Unlit/flutterGenerated"
         TailFalloff("TailFalloff", Range(0, 10)) = 2.1
         TailHeightPow("TailHeightPow", Range(0, 3)) = 2
 
-        [Header(utilities)]
-
-
 		_SlantAmount ( "_SlantAmount" , Range( 0 , 1 ) ) = 0.72
 	}
 	SubShader
@@ -70,6 +67,7 @@ Shader "Unlit/flutterGenerated"
 			
 			#include "UnityCG.cginc"
 			#include "ingredients/vertexShader.cginc"
+			#include "ingredients/utilities.cginc"
 			
 			#include "ingredients/cueProperties.cginc"
 			#include "ingredients/fuzz.cginc"
@@ -83,7 +81,6 @@ Shader "Unlit/flutterGenerated"
 			#pragma vertex vert
 			
 			fixed _SlantAmount;
-
 
 			fixed2 getUvs(fixed2 uv) {
 				// Slant shape
@@ -102,10 +99,7 @@ Shader "Unlit/flutterGenerated"
 
 				return fixed2(x,y);
 			}
-			
-			
-			#include "ingredients/utilities.cginc"
-
+						
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// calls getUvs and gives me a 'uv' var suited to the object:
@@ -118,9 +112,7 @@ Shader "Unlit/flutterGenerated"
 
 				// Everything
 				fixed3 layers = resonanceLayer + layer3( frostLayer, baseLayer );
-				//return fixed4( layers * shape, fuzzedAlpha );
-				
-				return finalCol(debugVariable(i.uv.y));
+				return fixed4( layers * shape, fuzzedAlpha );
 			}
 
 			ENDCG
