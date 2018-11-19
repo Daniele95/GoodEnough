@@ -78,9 +78,9 @@ Material:
     - _FrostSideHeightPercent: 1
     - _FrostTime: 1
     - _FrostWidth: 1
-    - _FuzzAmount: 0.6
-    - _FuzzLengthMultiplier: 2.5
-    - _FuzzPower: 6
+    - _FuzzAmount: 0.545
+    - _FuzzLengthMultiplier: 5.24
+    - _FuzzPower: 7.1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1

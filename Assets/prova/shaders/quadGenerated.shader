@@ -3,6 +3,27 @@ Shader "Unlit/quadGenerated"
     Properties
     {
 
+        [Header(cueProperties)]
+
+        _Alpha("_Alpha", Range(0, 1)) = 1
+        _BaseColor("_BaseColor", Color ) = (1, 1, 1)
+        _ResonanceColor("_ResonanceColor", Color ) = (1, 1, 1)
+        [Toggle] _ShowResonance("_ShowResonance", Float ) = 1
+        _FrostColor("_FrostColor", Color ) = (1, 1, 1)
+        [Toggle] _ShowFrost("_ShowFrost", Float ) = 1
+        _ResonanceDimmer("_ResonanceDimmer", Range(0, 1)) = 1
+        _ScaleY("_ScaleY", Range(0, 10)) = 6
+        time("time", Range(0, 2)) = 1
+
+        [Header(fuzz)]
+
+        _FuzzLengthMultiplier("_FuzzLengthMultiplier", Range(0, 1)) = 0.6
+        _FuzzAmount("_FuzzAmount", Range(0, 10)) = 6
+        _FuzzPower("_FuzzPower", Range(0, 10)) = 2.5
+
+        [Header(colorMixing)]
+
+
         [Header(resonance)]
 
         WaveCenter("WaveCenter", Vector) = (1, 1, 1, 1)
@@ -33,7 +54,6 @@ Shader "Unlit/quadGenerated"
         TailFalloff("TailFalloff", Range(0, 10)) = 2.1
         TailHeightPow("TailHeightPow", Range(0, 3)) = 2
 
-		time("time",Range(0,2))=1
 	}
 	SubShader
 	{
@@ -46,6 +66,11 @@ Shader "Unlit/quadGenerated"
 			
 			#include "UnityCG.cginc"
 			#include "ingredients/vertexShader.cginc"
+			
+			#include "ingredients/cueProperties.cginc"
+			#include "ingredients/fuzz.cginc"
+			#include "ingredients/colorMixing.cginc"
+
 			#include "ingredients/resonance.cginc"
 			#include "ingredients/quadFrost.cginc"
 
@@ -53,13 +78,21 @@ Shader "Unlit/quadGenerated"
 			#pragma fragment frag
 			#pragma vertex vert
 			
-			fixed time;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
-				float3 result = quadFrost(i.uv, _Time.y, 6);
-				result += resonance(i.uv,_Time.y,6);
-				return float4(result,1.);
+				if(time==0) time=_Time.y;
+				// Fuzz
+				fixed fuzzedAlpha = getFuzzedAlpha( ( i.uv.x - 0.5 ) * _FuzzLengthMultiplier, _Alpha );
+
+				// Layers
+				fixed3 baseLayer = _BaseColor;
+				fixed3 resonanceLayer = resonance(i.uv,time,_ScaleY) * _ResonanceColor * _ShowResonance;		
+				fixed3 frostLayer = quadFrost(i.uv,time, _ScaleY) * _FrostColor * _ShowFrost;
+				
+				// Everything
+				return fixed4( resonanceLayer + layer3( frostLayer, baseLayer ), fuzzedAlpha );
+
 			}
 			ENDCG
 		}

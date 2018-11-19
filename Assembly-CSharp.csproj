@@ -67,6 +67,14 @@
     <Compile Include="Assets\script\setPivot.cs" />
     <Compile Include="Assets\script\Timer.cs" />
     <Compile Include="Assets\script\Utilities.cs" />
+    <None Include="Assets\prova\shaders\flutter.shader" />
+    <None Include="Assets\prova\shaders\ingredients\slant.cginc" />
+    <None Include="Assets\prova\shaders\swipe.shader" />
+    <None Include="Assets\prova\shaders\circleGenerated.shader" />
+    <None Include="Assets\prova\shaders\ingredients\cueProperties.cginc" />
+    <None Include="Assets\prova\shaders\ingredients\colorMixing.cginc" />
+    <None Include="Assets\prova\shaders\ingredients\fuzz.cginc" />
+    <None Include="Assets\prova\shaders\quadGenerated.shader" />
     <None Include="Assets\shader\FlutterBody.shader" />
     <None Include="Assets\shader\CueShared.cginc" />
     <None Include="Assets\shader\SwipeBody.shader" />
@@ -74,9 +82,7 @@
     <None Include="Assets\shader\CircleBody.shader" />
     <None Include="Assets\prova\shaders\ingredients\resonance.cginc" />
     <None Include="Assets\prova\shaders\ingredients\quadFrost.cginc" />
-    <None Include="Assets\prova\shaders\circleGenerated.shader" />
     <None Include="Assets\prova\shaders\quad.shader" />
-    <None Include="Assets\prova\shaders\quadGenerated.shader" />
     <None Include="Assets\prova\shaders\ingredients\circleRing.cginc" />
     <None Include="Assets\prova\shaders\ingredients\vertexShader.cginc" />
     <None Include="Assets\shader\QuadBody.shader" />

@@ -23,7 +23,7 @@ namespace shaderGen
         public string shaderHome;
         public string includesHome;
 
-        public string shader;
+        string shader;
 
         void Update()
         {
@@ -35,8 +35,11 @@ namespace shaderGen
             shaderHome = @"C:/Users/daniele/Documents/Unity Projects/GoodEnough/Assets/prova/shaders/";
             includesHome = @"C:/Users/daniele/Documents/Unity Projects/GoodEnough/Assets/prova/shaders/ingredients/";
 
-            foreach (string shaderName in getShaders(shaderHome))
+            foreach (string shaderName in getShaders(shaderHome)) { 
+
                 compileShaderWithIncludes(stringOps.removeExtension(shaderName));
+                Debug.Log("generato lo shader per " + shaderName);
+            }
 
         }
 
@@ -92,6 +95,7 @@ namespace shaderGen
                     }
                 }
             }
+            read.Close();
             return ret;
         }
 
@@ -110,18 +114,25 @@ namespace shaderGen
             {
                 // for instance
                 // float4 WaveCenter; // 1 1 1 1
+
+                if (line.Split(' ').Length.Equals(2))
+                    Debug.LogError("Don't forget to set initial values for properties in cginc," +
+                        " like 'fixed _FrostWidth; // 0 1 1'");
+
                 string type = stringOps.getNthWordOfString(line, 0); // float4
                 string name = stringOps.getNthWordOfString(line, 1); // WaveCenter;
                 name = name.Remove(name.Length - 1); // WaveCenter
 
-                if (type.Equals("float4") || type.Equals("half4") || type.Equals("fixed4"))
-                {
+
+                if (line.Split(' ').Length.Equals(4))
+                    addToggleProperty(line, name);
+                else if (type.Equals("float4") || type.Equals("half4") || type.Equals("fixed4"))
                     addVectorProperty(line, name);
-                }
-                if (type.Equals("float") || type.Equals("half") || type.Equals("fixed"))
-                {
+                else if (type.Equals("float") || type.Equals("half") || type.Equals("fixed"))
                     addRangeProperty(line, name);
-                }
+                else if (type.Equals("float3") || type.Equals("half3") || type.Equals("fixed3"))
+                    addColorProperty(line, name);
+
                 breakLine(1);
             }
             breakLine(1);
@@ -146,24 +157,36 @@ namespace shaderGen
                 while (!(line = sr.ReadLine()).Equals(""))
                     ret.Add(line);
                 sr.Close();
-
             }
             return ret;
+        }
+
+
+        void addColorProperty(string line, string name)
+        {
+            string[] values;
+            values = stringOps.getLastWordsOfString(line, 3);
+            // _BaseColor("Base color", Color) = (1, 1, 1)
+            shader += "        " + name + "(\"" + name + "\", Color ) = (" + values[0]+", "+values[1]+", "+values[2]+")";
+        }
+
+        void addToggleProperty(string line, string name)
+        {
+            string[] values;
+            values = stringOps.getLastWordsOfString(line, 1);
+            // [Toggle] _ShowResonance( "Show resonance", Float ) = 1
+            shader += "        [Toggle] " + name + "(\"" + name + "\", Float ) = " + values[0];
         }
 
         void addRangeProperty(string line, string name)
         {
             // _ResonanceWaveFront("Wave front", Range(0, 1)) = 1
-            if (line.Split(' ').Length.Equals(2))
-                Debug.LogError("Don't forget to set initial values for properties in cginc," +
-                    " like 'fixed _FrostWidth; // 0 1 1'");
-            else
-            {
+            
                 string[] values;
                 values = stringOps.getLastWordsOfString(line, 3);
                 string range = "Range(" + values[0] + ", " + values[1] + ")";
                 shader += "        " + name + "(\"" + name + "\", " + range + ") = " + values[2];
-            }
+         
         }
 
         void addVectorProperty(string line, string name)

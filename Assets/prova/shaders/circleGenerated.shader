@@ -3,6 +3,27 @@ Shader "Unlit/circleGenerated"
     Properties
     {
 
+        [Header(cueProperties)]
+
+        _Alpha("_Alpha", Range(0, 1)) = 1
+        _BaseColor("_BaseColor", Color ) = (1, 1, 1)
+        _ResonanceColor("_ResonanceColor", Color ) = (1, 1, 1)
+        [Toggle] _ShowResonance("_ShowResonance", Float ) = 1
+        _FrostColor("_FrostColor", Color ) = (1, 1, 1)
+        [Toggle] _ShowFrost("_ShowFrost", Float ) = 1
+        _ResonanceDimmer("_ResonanceDimmer", Range(0, 1)) = 1
+        _ScaleY("_ScaleY", Range(0, 10)) = 6
+        time("time", Range(0, 2)) = 1
+
+        [Header(fuzz)]
+
+        _FuzzLengthMultiplier("_FuzzLengthMultiplier", Range(0, 1)) = 0.6
+        _FuzzAmount("_FuzzAmount", Range(0, 10)) = 6
+        _FuzzPower("_FuzzPower", Range(0, 10)) = 2.5
+
+        [Header(colorMixing)]
+
+
         [Header(resonance)]
 
         WaveCenter("WaveCenter", Vector) = (1, 1, 1, 1)
@@ -33,7 +54,7 @@ Shader "Unlit/circleGenerated"
         Width("Width", Range(0, 1)) = 1
         Fuzziness("Fuzziness", Range(0, 1)) = 1
 
-		time("time",Range(0,2))=1
+		[Toggle]_ShowRing("_ShowRing",Float) = 1
 	}
 	SubShader
 	{
@@ -46,20 +67,55 @@ Shader "Unlit/circleGenerated"
 			
 			#include "UnityCG.cginc"
 			#include "ingredients/vertexShader.cginc"
+			
+			#include "ingredients/cueProperties.cginc"
+			#include "ingredients/fuzz.cginc"
+			#include "ingredients/colorMixing.cginc"
+
 			#include "ingredients/resonance.cginc"
 			#include "ingredients/circleFrost.cginc"
 			#include "ingredients/circleRing.cginc"
 
+
 			#pragma fragment frag
 			#pragma vertex vert
 			
-			fixed time;
+			fixed  _ShowRing;
+			fixed shape;
+			fixed fuzzedAlpha;
+
+			fixed2  getUvs(fixed2 uv) {
+				fixed2 centeredUv = uv - 0.5;
+				centeredUv.y += .5;
+				centeredUv.y /= 2;
+
+				// Circle shape
+				shape = ( ( centeredUv.x * centeredUv.x + centeredUv.y * centeredUv.y ) < 0.25 );				
+
+				// Fuzz
+				fuzzedAlpha = getFuzzedAlpha( length( centeredUv ) * _FuzzLengthMultiplier, _Alpha );
+				return centeredUv;
+			}
 
 			fixed4 frag (v2f i) : SV_Target
-			{
-				float3 result = frost(i.uv,time);
-				//result += ring(i.uv,time);
-				return float4(result,1.);
+			{				
+				
+				if(time==0) time=_Time.y;
+				fixed2 centeredUv = getUvs(i.uv);
+
+				// Non-ring layers (not individually fuzzed/alphaed)
+				fixed3 baseLayer = _BaseColor;
+				fixed3 resonanceLayer = resonance(i.uv,time,_ScaleY)/6. * _ResonanceColor * _ShowResonance; 
+				// Non-centered uv
+				fixed3 frostLayer = frost(centeredUv,time) * _FrostColor * _ShowFrost;
+
+				// Ring layer -- no fuzz/alpha
+				fixed4 ringLayer = ring(centeredUv,time-1.)  * fixed4( _FrostColor, 1.0 ) * _ShowRing;
+				
+				// Blending
+				fixed4 layers = layer4( ringLayer, fixed4( resonanceLayer + layer3( frostLayer, baseLayer ), fuzzedAlpha ) );
+				return layers * shape;
+
 			}
 			ENDCG
 		}
